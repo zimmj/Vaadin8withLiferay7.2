@@ -43,7 +43,6 @@ vaadinCompile {
 //    draftCompile true
 //    style 'DETAILED'
 
-    logging false
     draftCompile false
     style 'OBF'
     strict true
