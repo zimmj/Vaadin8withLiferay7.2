@@ -1,0 +1,62 @@
+plugins {
+    id "fi.jasoft.plugin.vaadin" version "1.1.12"
+    id "java"
+}
+
+vaadinClassPathJar.enabled = false
+vaadinSourcesJar.enabled = false
+vaadinJavadocJar.enabled = false
+war.enabled = false
+
+artifacts {
+    archives jar
+}
+
+vaadin {
+    version "8.9.0"
+}
+
+repositories {
+    mavenCentral()
+}
+dependencies {
+    compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
+    compileOnly group: "javax.portlet", name: "portlet-api", version: "2.0"
+    compileOnly group: "javax.servlet", name: "javax.servlet-api", version: "4.0.1"
+    compileOnly group: "org.osgi", name: "osgi.cmpn", version: "6.0.0"
+    compileOnly group: "com.vaadin", name: "vaadin-themes", version: vaadin.version
+    compileOnly group: "com.vaadin", name: "vaadin-shared", version: vaadin.version
+    compileOnly group: "com.vaadin", name: "vaadin-server", version: vaadin.version
+    compileOnly group: "com.vaadin", name: "vaadin-osgi-integration", version: vaadin.version
+    compileOnly group: "com.vaadin", name: "vaadin-liferay-integration", version: vaadin.version
+}
+
+
+ext {
+    generatedVaadinWebapp = "${buildDir}/classes/main/"
+}
+
+vaadinCompile {
+// useful stuff to trace
+//    logging true
+//    logLevel 'TRACE'
+//    draftCompile true
+//    style 'DETAILED'
+
+    logging false
+    draftCompile false
+    style 'OBF'
+    strict true
+
+    manageWidgetset true
+    widgetset 'org.vaadin.liferay.example.AppWidgetSet'
+    outputDirectory generatedVaadinWebapp
+    jvmArgs '-Xmx2G'
+}
+
+jar {
+    dependsOn 'vaadinCompile'
+    exclude('**/*.java')
+    exclude('**/*.gwt.xml')
+    exclude('**/test/**/*.class')
+}

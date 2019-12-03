@@ -1,0 +1,4 @@
+.gradle/
+build/
+target/
+src/main/webapp/VAADIN/widgetsets
