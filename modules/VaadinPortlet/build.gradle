@@ -1,23 +1,5 @@
 plugins {
-    id "fi.jasoft.plugin.vaadin" version "1.1.12"
-    id "java"
-}
-
-vaadinClassPathJar.enabled = false
-vaadinSourcesJar.enabled = false
-vaadinJavadocJar.enabled = false
-war.enabled = false
-
-artifacts {
-    archives jar
-}
-
-vaadin {
-    version "8.9.0"
-}
-
-repositories {
-    mavenCentral()
+    id "com.devsoap.plugin.vaadin" version "1.3.1" //highest plugin which is working with gradle 4.10
 }
 dependencies {
     compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
@@ -27,34 +9,39 @@ dependencies {
     compileOnly group: "com.vaadin", name: "vaadin-themes", version: vaadin.version
     compileOnly group: "com.vaadin", name: "vaadin-shared", version: vaadin.version
     compileOnly group: "com.vaadin", name: "vaadin-server", version: vaadin.version
-    compileOnly group: "com.vaadin", name: "vaadin-osgi-integration", version: vaadin.version
-    compileOnly group: "com.vaadin", name: "vaadin-liferay-integration", version: vaadin.version
 }
 
-
-ext {
-    generatedVaadinWebapp = "${buildDir}/classes/main/"
+vaadin {
+    version "8.9.0"
 }
 
+buildCSS.enabled = false //disable Liferay SCSS converter
+vaadinJavadocJar.enabled = false // disable Javadoc Build
+war.enabled = false // disable warbuild
+
+// created arctifact need to be a jar for OSGI
+artifacts {
+    archives jar
+}
+
+repositories {
+    mavenCentral()
+}
+
+// fine tune vaadin task for Liferay
 vaadinCompile {
-// useful stuff to trace
-//    logging true
-//    logLevel 'TRACE'
-//    draftCompile true
-//    style 'DETAILED'
-
     draftCompile false
     style 'OBF'
     strict true
 
-    manageWidgetset true
-    widgetset 'org.vaadin.liferay.example.AppWidgetSet'
-    outputDirectory generatedVaadinWebapp
+    manageWidgetset true //Creates Widgetset for us, can be turned of
+    widgetset 'org.vaadin.liferay.example.AppWidgetSet' //location of widgetset
+    //Specific amount of memory for Vaadin compile, otherwise Widgetset can not be build.
     jvmArgs '-Xmx2G'
 }
 
 jar {
-    dependsOn 'vaadinCompile'
+    dependsOn 'vaadinCompile' // adds task to build process
     exclude('**/*.java')
     exclude('**/*.gwt.xml')
     exclude('**/test/**/*.class')
