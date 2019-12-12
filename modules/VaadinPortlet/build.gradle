@@ -35,7 +35,7 @@ vaadinCompile {
     strict true
 
     manageWidgetset true //Creates Widgetset for us, can be turned of
-    widgetset 'org.vaadin.liferay.example.AppWidgetSet' //location of widgetset
+    widgetset 'org.vaadin.liferay.example.CustomeWidgetSet' //location of widgetset
     //Specific amount of memory for Vaadin compile, otherwise Widgetset can not be build.
     jvmArgs '-Xmx2G'
 }
