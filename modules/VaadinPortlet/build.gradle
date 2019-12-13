@@ -41,6 +41,7 @@ vaadinCompile {
 }
 
 jar {
+    dependsOn 'vaadinThemeCompile'
     dependsOn 'vaadinCompile' // adds task to build process
     from "src/main/webapp"
     exclude('**/*.java')

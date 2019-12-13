@@ -23,6 +23,7 @@ import org.osgi.service.component.annotations.ServiceScope;
 import org.vaadin.liferay.example.ui.widgetset.server.StripCharsRe;
 
 
+@Theme(AppTheme.THEME_NAME)
 @Widgetset(AppWidgetSet.NAME)
 @SuppressWarnings("serial")
 

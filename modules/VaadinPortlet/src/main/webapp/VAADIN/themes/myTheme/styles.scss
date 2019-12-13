@@ -1,0 +1,7 @@
+@import "addons";
+@import "custom/newStyle";
+@import "../valo/valo";  //Add Valo theme to out theme, so basic thinks looks same
+
+@include addons;
+@include myTheme;
+@include valo;

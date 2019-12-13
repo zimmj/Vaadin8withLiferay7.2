@@ -1,0 +1,7 @@
+/*You can add your own style, which are used in the Vaadin theme. This Theme is loaded explicitly for Vaadin Portlets*/
+@mixin myTheme {
+    .v-label {
+    background-color: green;
+    }
+}
+
