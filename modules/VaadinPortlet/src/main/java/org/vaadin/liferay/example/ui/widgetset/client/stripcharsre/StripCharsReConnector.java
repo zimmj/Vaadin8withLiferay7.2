@@ -76,12 +76,12 @@ public class StripCharsReConnector extends AbstractExtensionConnector implements
 		final int index = field.getCursorPos();
 		final String previousText = field.getText();
 		final StringBuilder buffer = new StringBuilder();
-		buffer.append(previousText.substring(0, index));
+		buffer.append(previousText, 0, index);
 		buffer.append(charCode);
 		if (field.getSelectionLength() > 0) {
-			buffer.append(previousText.substring(index + field.getSelectionLength(), previousText.length()));
+			buffer.append(previousText.substring(index + field.getSelectionLength()));
 		} else {
-			buffer.append(previousText.substring(index, previousText.length()));
+			buffer.append(previousText.substring(index));
 		}
 		return buffer.toString();
 	}

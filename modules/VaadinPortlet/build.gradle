@@ -34,14 +34,15 @@ vaadinCompile {
     style 'OBF'
     strict true
 
-    manageWidgetset true //Creates Widgetset for us, can be turned of
-    widgetset 'org.vaadin.liferay.example.CustomeWidgetSet' //location of widgetset
+    manageWidgetset false //Creates Widgetset for us, can be turned of
+    widgetset 'org.vaadin.liferay.example.ui.widgetset.CustomeWidgetSet' //location of widgetset
     //Specific amount of memory for Vaadin compile, otherwise Widgetset can not be build.
     jvmArgs '-Xmx2G'
 }
 
 jar {
     dependsOn 'vaadinCompile' // adds task to build process
+    from "src/main/webapp"
     exclude('**/*.java')
     exclude('**/*.gwt.xml')
     exclude('**/test/**/*.class')

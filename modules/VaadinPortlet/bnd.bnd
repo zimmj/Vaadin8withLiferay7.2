@@ -2,3 +2,6 @@ Bundle-Name: VaadinPortlet New
 Bundle-SymbolicName: org.vaadin.sample.portlet.new
 Bundle-Version: 1.0.0
 Export-Package: org.vaadin.liferay.example
+Import-Package: \
+    !com.google.*, \
+    *
