@@ -2,3 +2,6 @@
 build/
 target/
 src/main/webapp/VAADIN/widgetsets
+/src/main/webapp/VAADIN/themes/myTheme/styles.css.gz
+/src/main/webapp/VAADIN/themes/myTheme/addons.scss
+/src/main/webapp/VAADIN/themes/myTheme/styles.css
