@@ -22,6 +22,5 @@ Features:
 # Vaadin 8 Compatibility mode
 If you want to use the Vaadin 8 Compatibility mode, you need to add all the jars to the server. The vaadin 8 compatiility client can not be run on osgi, as it doesn't have a manifest file. Fortunately it is only needed in compile time. To avoid osgi trouble add following statement to the bnd.bnd file:
 
-Import-Package: \
-        com.vaadin.v7.client.*, resolution:=optional, \
-        *
+Import-Package: \\
+        com.vaadin.v7.client.*; resolution:=optional, \\        *
